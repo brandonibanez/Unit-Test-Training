@@ -1,13 +1,15 @@
 package com.luv2code.junitdemo;
 
+import lombok.Getter;
+
 import java.util.List;
 
 public class DemoUtils {
 
-    private String academy = "Luv2Code Academy";
+    private String academy = "brandon";
     private String academyDuplicate = academy;
     private String[] firstThreeLettersOfAlphabet = {"A", "B", "C"};
-    private List<String> academyInList = List.of("luv", "2", "code");
+    private List<String> academyInList = List.of("bra", "n", "don");
 
     public List<String> getAcademyInList() {
         return academyInList;
