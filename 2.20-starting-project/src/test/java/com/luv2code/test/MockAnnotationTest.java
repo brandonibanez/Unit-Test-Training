@@ -109,5 +109,4 @@ public class MockAnnotationTest {
         verify(applicationDao, times(2)).checkNull(nullStudent);
     }
 
-
 }
