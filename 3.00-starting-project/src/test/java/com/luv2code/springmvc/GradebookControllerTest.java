@@ -10,6 +10,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
@@ -51,18 +52,44 @@ public class GradebookControllerTest {
     @Autowired
     private StudentDao studentDao;
 
+    @Value("${sql.script.create.student}")
+    private String sqlAddStudent;
+
+    @Value("${sql.script.create.math.grade}")
+    private String sqlAddMathGrade;
+
+    @Value("${sql.script.create.science.grade}")
+    private String sqlAddScienceGrade;
+
+    @Value("${sql.script.create.history.grade}")
+    private String sqlAddHistoryGrade;
+
+    @Value("${sql.script.delete.student}")
+    private String deleteStudent;
+
+    @Value("${sql.script.delete.math.grade}")
+    private String deleteMathGrade;
+
+    @Value("${sql.script.delete.science.grade}")
+    private String deleteScienceGrade;
+
+    @Value("${sql.script.delete.history.grade}")
+    private String deleteHistoryGrade;
+
     @BeforeAll
     public static void setup() {
         request = new MockHttpServletRequest();
         request.setParameter("firstname", "Rabby");
         request.setParameter("lastname", "Dabby");
-        request.setParameter("emailAddress", "test@test.com");
+        request.setParameter("emailAddress", "test@gmail.com");
     }
 
     @BeforeEach
     public void setupDatabase() {
-        jdbc.execute("insert into student(id, firstname, lastname, email_address)" +
-                "values (1, 'Rabby', 'Dabby', 'test@gmail.com')");
+        jdbc.execute(sqlAddStudent);
+        jdbc.execute(sqlAddMathGrade);
+        jdbc.execute(sqlAddScienceGrade);
+        jdbc.execute(sqlAddHistoryGrade);
     }
 
     @Test
@@ -110,7 +137,7 @@ public class GradebookControllerTest {
 
         ModelAndViewAssert.assertViewName(mav, "index");
 
-        CollegeStudent verifyStudent = studentDao.findByEmailAddress("test@gmail.com");
+        CollegeStudent verifyStudent = studentDao.findByEmailAddress("test@test.com");
 
         assertNotNull(verifyStudent, "Student should be found");
     }
