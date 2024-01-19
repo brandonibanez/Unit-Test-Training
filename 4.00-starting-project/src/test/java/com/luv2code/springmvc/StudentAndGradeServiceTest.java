@@ -136,9 +136,9 @@ public class StudentAndGradeServiceTest {
         assertNotNull(gradebookCollegeStudentTest.getStudentGrades().getScienceGradeResults());
         assertNotNull(gradebookCollegeStudentTest.getStudentGrades().getHistoryGradeResults());
 
-        assertEquals("Eric", gradebookCollegeStudentTest.getFirstname());
-        assertEquals("Roby", gradebookCollegeStudentTest.getLastname());
-        assertEquals("eric.roby@luv2code_school.com", gradebookCollegeStudentTest.getEmailAddress());
+        assertEquals("Rabby", gradebookCollegeStudentTest.getFirstname());
+        assertEquals("Dabby", gradebookCollegeStudentTest.getLastname());
+        assertEquals("test@test.com", gradebookCollegeStudentTest.getEmailAddress());
 
     }
 
